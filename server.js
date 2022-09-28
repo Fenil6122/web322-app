@@ -3,8 +3,8 @@ var express = require("express");
 var app = express();
 
 // setup a 'route' to listen on the default url path
-app.get("/about", (req, res) => {
-    res.send("Hello World!");
+app.get("/", (req, res) => {
+    res.redirect('/about');
 });
 
 // setup http server to listen on HTTP_PORT
