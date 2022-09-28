@@ -3,7 +3,7 @@ var express = require("express");
 var app = express();
 
 // setup a 'route' to listen on the default url path
-app.get("/", (req, res) => {
+app.redirect("/about", (req, res) => {
     res.redirect("/views/about");
 });
 
