@@ -42,9 +42,9 @@ function getAllPosts() {
 
 function getPublishedPosts() {
     return new Promise((resolve, reject) => {
-        let publishedPosts = posts.filter(post => post.published === true);
-        if(publishedPosts.length) resolve(publishedPosts)
-        else reject("no results returned");
+        var publishedPosts = posts.filter(post => post.published == true);
+        if(publishedPosts.length==0) reject("no results returned");
+        else resolve(publishedPosts);
     })
 }
 
