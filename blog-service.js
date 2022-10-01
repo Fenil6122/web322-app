@@ -17,17 +17,22 @@ function initialize () {
         fs.readFile(path.join(__dirname, "data/posts.json"), 'utf8', (err, data) => {
             if (err) {
                 result = "unable to read file";
-            };
-            posts = JSON.parse(data);
+            }
+            else{
+                posts = JSON.parse(data);
+            }
         });
         fs.readFile(path.join(__dirname, "data/categories.json"), 'utf8', (err, data) => {
             if (err) {
                 result = "unable to read file";
             }
-            categories = JSON.parse(data);
+            else{
+                categories = JSON.parse(data);
+            }
         });
 
-        if(result.length) {
+        if(result.length) 
+        {
             reject(result);
         } 
     });
@@ -35,22 +40,40 @@ function initialize () {
 
 function getAllPosts() {
     return new Promise((resolve, reject) => {
-        if(posts.length) resolve(posts)
-        else reject("no results returned");
+        if(posts.length)
+        {
+            resolve(posts)
+        }
+        else 
+        {
+            reject("no results returned");
+        }
     })
 }
 
 function getPublishedPosts() {
     return new Promise((resolve, reject) => {
         var publishedPosts = posts.filter(post => post.published == true);
-        if(publishedPosts.length==0) reject("no results returned");
-        else resolve(publishedPosts);
+        if(publishedPosts.length==0) 
+        {
+            reject("no results returned");
+        }
+        else
+        {
+            resolve(publishedPosts);
+        }
     })
 }
 
 function getCategories() {
     return new Promise((resolve, reject) => {
-        if(categories.length) resolve(categories)
-        else reject("no results returned");
+        if(categories.length)
+        {
+            resolve(categories)
+        }
+        else
+        { 
+            reject("no results returned");
+        }
     })
 }
