@@ -97,6 +97,7 @@ function addPost(postData){
 }
 
 
+
 function getPostsByCategory (category){
     return new Promise((resolve, reject) => {
         const categoryPosts = posts.filter((post) => {

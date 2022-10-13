@@ -1,11 +1,12 @@
 /*********************************************************************************
 *  WEB322 – Assignment 03
-*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source 
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part 
+*  of this assignment has been copied manually or electronically from any other source 
 *  (including 3rd party web sites) or distributed to other students.
 * 
 *  Name:Fenil KetanKumar Patel 
 *  Student ID: 134516210 
-*  Date: 30th Sept,2022
+*  Date: 13th Oct,2022
 *
 *  Online (Cyclic) Link: https://zany-pink-rabbit-gear.cyclic.app
 *
@@ -46,9 +47,19 @@
      service.getPublishedPosts().then(data => res.json(data)).catch(err => res.json(err));
  })
  
- app.get('/posts', (req, res) => {
-     service.getAllPosts().then(data => res.json(data)).catch(err => res.json(err));
- })
+ app.get('/post/:value', (req, res) => {
+    service.getPostById(req.params.value).then(data => res.send(data)).catch(err => res.json(`Error Message: ${err}`));
+})
+
+app.get('/posts', (req, res) => {
+    if (req.query.category) {
+        service.getPostsByCategory(req.query.category).then(data => res.send(data)).catch(err => res.json(`Error Message: ${err}`));
+    } else if (req.query.minDate) {
+        service.getPostsByMinDate(req.query.minDate).then(data => res.send(data)).catch(err => res.json(`Error Message: ${err}`));
+    } else {
+        service.getAllPosts().then(data => res.send(data)).catch(err => res.json(`Error Message: ${err}`));
+    }
+})
  
  app.get('/categories', (req, res) => {
      service.getCategories().then(data => res.json(data)).catch(err => res.json(err));
@@ -106,6 +117,6 @@
                 "published": req.body.published,
             }
     
-            blogService.addPost(postData).then(data => res.redirect('/posts')).catch(err => res.json(`message: ${err}`));
-        }
+            service.addPost(postData).then(data => res.redirect('/posts')).catch(err => res.json(`error message: ${err}`));
+    }
     })
