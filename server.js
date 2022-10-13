@@ -44,4 +44,5 @@
  
  app.listen(HTTP_PORT, () => {
      service.initialize().then((data) => console.log(data)).catch((err) => console.log(err));
+     console.log("Express http server listening on: " + HTTP_PORT);
  })
