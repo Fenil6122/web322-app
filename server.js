@@ -6,7 +6,7 @@
 * 
 *  Name:Fenil KetanKumar Patel 
 *  Student ID: 134516210 
-*  Date: 3rd Nov,2022
+*  Date: 4th Nov,2022
 *
 *  Online (Cyclic) Link: https://zany-pink-rabbit-gear.cyclic.app
 *
@@ -59,9 +59,7 @@ function onHttpStart(){
     console.log('Express http server listening on ' + HTTP_PORT);
 }
 
-
-
-const upload = multer() // no { storage: storage }
+const upload = multer() 
 
 app.use(express.static('public'));
 
@@ -71,7 +69,6 @@ app.use(function(req,res,next){
   app.locals.viewingCategory = req.query.category;
   next();
 });
-
 
 app.get('/', (req, res) =>
 {
