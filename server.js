@@ -56,7 +56,7 @@ app.engine('.hbs', exphbs.engine({
 app.set("view engine", ".hbs");
 
 function onHttpStart(){
-    console.log('Express http server listening on ' + HTTP_PORT);
+    console.log('listening on http://localhost:' + HTTP_PORT);
 }
 
 const upload = multer() 
@@ -139,6 +139,7 @@ app.get('/blog/:id', async (req, res) => {
 
   try{
       viewData.post = await blogservice.getPostById(req.params.id);
+    
   }catch(err){
       viewData.message = "no results"; 
   }
