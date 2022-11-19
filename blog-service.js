@@ -28,7 +28,7 @@ Post.belongsTo(Category, {foreignKey: 'category'});
 
 module.exports.initialize = function () {
     return new Promise((resolve, reject) => {
-        sequelize.sync().then(() => {
+        sequelize.authenticate().then(() => {
             resolve('operation was a success');
         }).catch(() => {
             reject("unable to sync the database");
@@ -161,7 +161,7 @@ module.exports.getCategories = function(){
 
 module.exports.addCategory = function(categoryData) {
     return new Promise((resolve, reject) => {
-        sequelize.sync().then(() => {
+        sequelize.authenticate().then(() => {
             for(let x in categoryData){
                 if(categoryData[x] == "") {
                     categoryData[x] = null;
